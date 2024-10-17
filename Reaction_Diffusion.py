@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Hyperparameters
-grid_size = 500
+grid_size = 200  # Start with a smaller grid size
 total_iterations = 600
 
 # Reaction-Diffusion parameters 
@@ -56,7 +56,7 @@ for k in range(-6, 7):
         for l in range(mid-k, mid+k+1):
             u[j, l] = 0.5 + np.random.rand() / 100
             v[j, l] = 0.1 + np.random.rand() / 100
-    c[mid-k:mid+k+1, mid-k:mid+k+1] = 1
+    c[mid-k:mid+k+1, mid-k+1:mid+k+1] = 1
 
 ij_mat = np.zeros((grid_size, grid_size))
 
@@ -100,7 +100,8 @@ for step in range(total_iterations):
             if c[i, j] > 0.5:
                 for di in range(-4, 5):
                     for dj in range(-4, 5):
-                        ij_mat[i + di, j + dj] = 1
+                        if 0 <= i + di < grid_size and 0 <= j + dj < grid_size:
+                            ij_mat[i + di, j + dj] = 1
 
     for i in range(1, grid_size-1):
         for j in range(1, grid_size-1):
@@ -130,8 +131,9 @@ for step in range(total_iterations):
     v = np.copy(v_new)
     c = np.copy(c_new)
 
-    # Visualization every 20 steps
-    if step % 20 == 0:
+    # Visualization every 100 steps
+    if step % 100 == 0:
         update_visualization(step, u, v, c, n)
 
 plt.show()
+
