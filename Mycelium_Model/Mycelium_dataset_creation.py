@@ -323,16 +323,17 @@ def run_simulation(skeleton, output_dir, device):
     export_tensor_to_csv_numpy(u, filename_final_u)
     export_tensor_to_csv_numpy(v, filename_final_v)
     export_tensor_to_csv_numpy(n, filename_final_n)
-
+# mplampla
     # Final statistics
-    print(f"Mean of u: {torch.mean(u).item()}")
-    print(f"Mean of v: {torch.mean(v).item()}")
+    print(f"Max of u: {torch.max(u).item()}")
+    print(f"Max of v: {torch.max(v).item()}")
     print(f"Max of c: {torch.max(c).item()}")
 
 # %%
 def main():
     # Directory containing the skeleton images
-    image_dir = "D:\\Fungateria\\Code\\Mycelium_Ver_2\\Fitting\\"  # Adjust as needed
+    # image_dir = "D:\\Fungateria\\Code\\Mycelium_Ver_2\\Fitting\\"  # Adjust as needed
+    image_dir = "D:\\Fungateria\\Github\\Fungateria\\Mycelium_Images\\"
     
     # Base output directory
     output_base_dir = 'D:/Fungateria/Github/Fungateria/Mycelium_Model/Validation/Python'
